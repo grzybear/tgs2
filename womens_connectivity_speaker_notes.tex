@@ -1,0 +1,289 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1.6cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\linespread{1.04}
+\setlist[itemize]{leftmargin=*,topsep=4pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=*,topsep=4pt,itemsep=2pt,parsep=0pt}
+\pagestyle{plain}
+
+\newcommand{\slide}[4]{%
+\section*{#1 \hfill {\normalsize #2}}
+\textbf{Purpose:} #3\\
+\textbf{Takeaway:} #4
+}
+\newcommand{\boldline}[1]{\par\textbf{Say exactly:} \textbf{#1}}
+\newcommand{\transition}[1]{\par\textbf{Transition:} #1}
+\newcommand{\labelbox}[1]{\textbf{[#1]}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE \textbf{Speaker Notes}}\\
+\vspace{2mm}
+{\large \textit{Women’s Connectivity in Extreme Networks}}\\
+\vspace{1mm}
+Compact print version for hand-held A4 notes
+\end{center}
+
+\noindent\textbf{Use:} read only the bold lines almost verbatim; everything else is a cue. Explain figures in this order: \textbf{what it is $\rightarrow$ axes $\rightarrow$ groups/colors $\rightarrow$ pattern $\rightarrow$ interpretation $\rightarrow$ caution}. Compress slides marked \labelbox{C} first.
+
+\medskip
+\noindent\textbf{Timing map:} 0--10 min framing and setup; 10--22 min core results; 22--33 min longevity and alternatives; 33--38 min limits, implications, model; 38--40 min conclusion; 40--45 min questions.
+
+\slide{1. Title slide \labelbox{M}}{0:30}{Frame the paper and set academic tone.}{This is a network-science talk about structural roles, not endorsement or operational guidance.}
+\begin{itemize}
+\item one-paper talk; two case studies; degree vs betweenness; sensitive topic
+\end{itemize}
+\boldline{Today we discuss whether women in extreme networks are peripheral, as stereotypes might suggest, or structurally important for connectivity.}
+\boldline{This is a talk about network measurement and interpretation, not about endorsing or operationalizing these organizations.}
+\transition{Now I want to state the puzzle in the clearest possible way.}
+
+\slide{2. Motivation \labelbox{M}}{2:30}{Present the research question and core claim.}{Numerical minority does not automatically mean structural marginality.}
+\begin{itemize}
+\item stereotype says peripheral; paper tests network position; two very different cases; centrality means contribution to connectivity
+\end{itemize}
+\boldline{The puzzle is that women may be fewer in number, yet still occupy positions that hold the network together.}
+\boldline{The paper’s claim is about structural importance, not about raw counts or public prominence.}
+\transition{To keep the framing disciplined, the next slide states what the talk is and is not doing.}
+
+\slide{3. Ethical scope \labelbox{M}}{3:30}{Set boundaries before technical material.}{Keep interpretation descriptive, cautious, and abstract.}
+\begin{itemize}
+\item abstracted visuals only; no sensational language; do not jump from pattern to motive
+\end{itemize}
+\boldline{We should read these results as measurements of network topology, not as proof of intent, morality, or psychology.}
+\transition{With that boundary set, I can define the two centrality measures.}
+
+\slide{4. Degree and betweenness \labelbox{M}}{6:00}{Give the technical vocabulary the rest of the talk depends on.}{Degree is local visibility; betweenness is brokerage over shortest paths.}
+\begin{itemize}
+\item degree = direct neighbors
+\item betweenness = share of shortest paths through a node
+\item extra steps add risk and cost in covert settings
+\item low degree and high betweenness can coexist
+\end{itemize}
+\boldline{Degree centrality is about how many direct ties you have; betweenness centrality is about how often others must pass through you.}
+\boldline{Betweenness is about brokerage, not popularity.}
+\transition{The supplement gives a concrete worked example of why this matters.}
+
+\slide{5. Why betweenness matters \labelbox{M}}{7:30}{Make betweenness intuitive using the paper’s own example.}{A node can matter disproportionately because many efficient routes depend on it.}
+\begin{itemize}
+\item supplementary worked example
+\item W lies on 20 of 26 shortest paths
+\item removing W is more disruptive than removing M2 or M4
+\end{itemize}
+\boldline{In the supplementary example, the woman-labeled node participates in 20 of 26 shortest paths, more than any of the men.}
+\boldline{So the key idea is not visibility but pathway control and network stability.}
+\transition{Now that the measure is clear, we can look at the two data sets.}
+
+\slide{6. Data sets at a glance \labelbox{M}}{9:30}{Orient the audience to the two empirical settings.}{The paper compares two operational networks with different time resolutions but comparable centrality logic.}
+\begin{itemize}
+\item online VKontakte followers; offline PIRA collaborators
+\item operational ties, not friendship ties
+\item daily online vs yearly offline
+\end{itemize}
+\boldline{The key strength here is that the links reflect operational behavior over time, not ordinary social acquaintance.}
+\boldline{So the comparison is not men versus women in general, but men versus women in operational network positions.}
+\transition{I will start with how the online network was constructed.}
+
+\slide{7. VKontakte pipeline \labelbox{M}}{11:30}{Explain where the online network comes from.}{The online graph is built from traced pro-ISIS group pages and daily co-membership edges.}
+\begin{itemize}
+\item hashtag tracing; seed pages; API snowballing; validation; closure
+\item edge rule: same group-page membership on day d
+\end{itemize}
+\boldline{Two users are linked on a given day if they follow the same pro-ISIS group page on that day.}
+\boldline{The important methodological point is that the online network is time-resolved, not static.}
+\transition{The next slide shows what those daily snapshots look like.}
+
+\slide{8. Online daily snapshots \labelbox{M}}{13:00}{Teach the audience how to read the online network figures.}{Centrality is computed day by day on a changing network.}
+\begin{itemize}
+\item nodes are users; edges are daily co-membership; colors encode gender
+\end{itemize}
+\boldline{This network is not a single frozen graph; it changes from day to day, and the centrality measures change with it.}
+\transition{Once that is clear, the first main result is the betweenness pattern.}
+
+\slide{9. Online higher betweenness peaks \labelbox{M}}{15:00}{Present the main online result.}{Women’s average betweenness shows much higher peaks than men’s.}
+\begin{itemize}
+\item explain axes first
+\item women = red, men = blue
+\item peaks, not just tiny average difference
+\end{itemize}
+\boldline{The main online result is that women’s average betweenness peaks substantially higher than men’s.}
+\boldline{That means women more often occupy brokerage positions on efficient routes through the network.}
+\transition{The next question is whether this is only a degree story.}
+
+\slide{10. Online degree null expectation \labelbox{M}}{17:00}{Explain the degree result and the null model.}{Women’s average degree is also unusually high relative to random gender labeling.}
+\begin{itemize}
+\item topology fixed, labels shuffled
+\item women about +4.7 SD, men about -4.7 SD
+\item but degree and betweenness do not always move together
+\end{itemize}
+\boldline{The null model asks whether the observed gender difference is larger than we would expect from random labeling on the same graph.}
+\boldline{For degree, the reported Z-scores are about +4.7 for women and -4.7 for men.}
+\transition{But the real interpretive hinge is that higher betweenness does not require looking like a star.}
+
+\slide{11. Brokerage without hub visibility \labelbox{M}}{19:00}{Show the difference between visible hubs and low-visibility brokers.}{Women can provide brokerage without becoming the most conspicuous high-degree nodes.}
+\begin{itemize}
+\item left = classic hub; right = broker with lower degree
+\item local visibility vs global function
+\end{itemize}
+\boldline{The interesting pattern is high structural importance without necessarily high visibility.}
+\boldline{Women can broker shortest paths without looking like obvious hubs.}
+\transition{The paper then asks whether a similar pattern appears in a much riskier offline network.}
+
+\slide{12. Offline PIRA edges \labelbox{M}}{21:00}{Define the offline network and its scale.}{The offline graph links actors who collaborated on the same operation in a given year.}
+\begin{itemize}
+\item archival and cross-checked data; yearly resolution; women only about 5\%
+\end{itemize}
+\boldline{In the PIRA case, a link means collaboration on the same operation in a given year.}
+\boldline{So again, the graph is trying to capture operational structure rather than acquaintance.}
+\transition{First, the paper shows that productivity rises while the network does not simply grow in size.}
+
+\slide{13. Activity rises while actor count does not \labelbox{M}}{22:30}{Connect organizational output to structural explanation.}{More attacks are not explained by a larger pool of actors.}
+\begin{itemize}
+\item IED count rises after reorganization; actor count does not rise with it
+\end{itemize}
+\boldline{PIRA productivity increases, but that increase is not explained by having more people.}
+\boldline{That pushes the explanation away from size and toward organization and network structure.}
+\transition{The supplementary figure makes that negative claim even clearer.}
+
+\slide{14. Productivity up, actor count down \labelbox{C}}{23:45}{Reinforce that productivity growth is not actor-growth.}{The output trend and the actor-count trend move in opposite directions.}
+\boldline{This is the paper’s explicit rebuttal to the simple “more people, more output” explanation.}
+\transition{Now we can return to the centrality trends themselves.}
+
+\slide{15. Offline women’s betweenness rises \labelbox{M}}{25:30}{Present the main offline betweenness result.}{In PIRA, women’s average betweenness rises clearly above men’s over time.}
+\begin{itemize}
+\item explain axes; women’s curve climbs well above men’s; avoid intent claims
+\end{itemize}
+\boldline{Even in this riskier offline setting, women’s average betweenness rises above men’s.}
+\boldline{The authors interpret this cautiously: they do not claim direct proof of intention.}
+\transition{The companion trend is that degree behaves differently.}
+
+\slide{16. Offline women’s degree declines faster \labelbox{M}}{27:15}{Contrast offline degree with offline betweenness.}{Women’s degree drops faster even while their betweenness rises.}
+\begin{itemize}
+\item degree falls for both groups; women’s decline is steeper
+\item proposed interpretation: reduce conspicuous visibility while retaining brokerage
+\end{itemize}
+\boldline{This is the clearest divergence in the paper: women’s betweenness rises while their degree falls faster.}
+\boldline{The proposed interpretation is brokerage without conspicuous visibility under direct risk.}
+\transition{The next two slides ask whether these positions are associated with longevity.}
+
+\slide{17. Online longevity \labelbox{M}}{28:45}{Present the online longevity association.}{Online groups with more women tend to last longer.}
+\begin{itemize}
+\item Pearson r = 0.28; P < 0.1; association only
+\end{itemize}
+\boldline{The paper reports a positive association between the fraction of women in a group and that group’s lifetime.}
+\boldline{This is an association, not a causal proof.}
+\transition{The offline case asks a related but slightly different longevity question.}
+
+\slide{18. Offline longevity \labelbox{M}}{30:15}{Present the offline longevity result.}{Actors directly connected to women have longer average lifetimes than those connected to men.}
+\begin{itemize}
+\item compare women-linked, men-linked, null model
+\end{itemize}
+\boldline{In the offline network, ties around women are associated with longer-lived network presence.}
+\boldline{This is consistent with women occupying more resilient bridging positions.}
+\transition{Before accepting the interpretation, the paper tries to rule out simpler alternatives.}
+
+\slide{19. Ruling out alternatives \labelbox{M}}{32:30}{Show that the authors considered competing explanations.}{The paper actively checks several ways the pattern could be misleading.}
+\begin{itemize}
+\item incomplete networks; exceptional women; role monopolization; over-reading metrics; online attention
+\item ISIS groups can approach 50\% women; expert-list mismatch in PIRA
+\end{itemize}
+\boldline{A strong part of the paper is that it does not stop at the headline result; it asks what simpler explanation could be driving it.}
+\transition{Two supplementary figures address the strongest of those alternatives directly.}
+
+\slide{20. Not a few exceptional women \labelbox{M}}{34:00}{Rebut the “tiny handful of standout women” explanation.}{The pattern is broad, not dominated by a few stars.}
+\begin{itemize}
+\item online CCDF is broad; PIRA top-BC women did not match expert reputation lists
+\end{itemize}
+\boldline{The data do not support the idea that this is all being driven by a few exceptional women.}
+\boldline{For PIRA, the highest-betweenness women were not the women experts would have named as most prominent.}
+\transition{The next alternative is that women were simply concentrated in one special role.}
+
+\slide{21. Not tied to one operational role \labelbox{M}}{35:30}{Rebut the role-assignment explanation.}{Higher betweenness does not seem to come from women occupying a single special role category.}
+\begin{itemize}
+\item S5 breaks BC down by role; men and women scattered across roles
+\end{itemize}
+\boldline{The paper finds no clear evidence that women’s higher betweenness is just an artifact of role assignment.}
+\boldline{That makes the pattern look more like a bottom-up network phenomenon.}
+\transition{After these robustness checks, the authors state their limits.}
+
+\slide{22. Limitations \labelbox{M}}{37:45}{State what the paper does not prove.}{These are structural observations with important data and measurement limits.}
+\begin{itemize}
+\item cannot prove completeness; external events influence evolution
+\item online gender declaration may be noisy
+\item higher-order metrics need more data and are more noise-sensitive
+\end{itemize}
+\boldline{This is a network-analysis paper, not a complete sociological explanation.}
+\boldline{Its claims are strongest as topological observations and weaker as claims about motive or intention.}
+\transition{With those limits in place, we can discuss the paper’s conceptual implication.}
+
+\slide{23. Implications \labelbox{M}}{39:15}{Draw the conceptual lesson.}{Importance in networks should not be reduced to visible hubs alone.}
+\begin{itemize}
+\item traditional hub focus; collective measures also matter; do not frame tactically
+\end{itemize}
+\boldline{The broader lesson is that structural importance cannot be inferred from raw numbers or visible hub status alone.}
+\boldline{The paper’s implication is evaluative, not tactical: rethink how importance is measured.}
+\transition{The next two slides cover the paper’s speculative model, which should be presented carefully.}
+
+\slide{24. Speculative mechanism \labelbox{M}}{41:45}{Explain what the model is trying to do and what it is not trying to do.}{The model is a simplified consistency check, not causal proof.}
+\begin{itemize}
+\item high-BC actors assumed more team-oriented
+\item women spread team ethic inside clusters
+\item built on fission-fusion dynamics
+\item oversimplified by authors’ own admission
+\end{itemize}
+\boldline{The model is not there to prove why the pattern happens; it is there to show that one simple mechanism can reproduce the broad direction of the PIRA trends.}
+\boldline{You should hear this as a speculative add-on, not as the paper’s core evidence.}
+\transition{The schematic makes the assumptions more concrete.}
+
+\slide{25. How the generative model operates \labelbox{C}}{43:15}{Decode the schematic at a high level.}{The model alternates coalescence and fragmentation, with kinship rules versus team rules.}
+\begin{itemize}
+\item coin flip between coalescence and fragmentation
+\item similarity parameter
+\item team ethic spreads inside joined clusters
+\end{itemize}
+\boldline{The schematic matters mainly because it makes the assumptions visible: coalescence, fragmentation, kinship rules, team rules, and spreading within clusters.}
+\boldline{Again, the authors explicitly call it oversimplified.}
+\transition{I will end with the three things I most want you to remember.}
+
+\slide{26. Conclusion \labelbox{M}}{44:00}{Deliver the memory version of the talk.}{Women are fewer in number but repeatedly appear more central in betweenness terms.}
+\begin{itemize}
+\item higher BC in both cases
+\item degree and betweenness diverge
+\item longevity patterns consistent with system-level consequences
+\end{itemize}
+\boldline{The paper’s main contribution is to show that women can be a minority in extreme networks while still being central to connectivity.}
+\boldline{Its broader lesson is that structural importance cannot be read off from raw numbers alone.}
+\boldline{Its main limitation is that structural patterns do not by themselves establish causal motives.}
+\transition{I’ll stop there and take questions.}
+
+\slide{27. Questions \labelbox{M}}{49:00--51:00}{Open discussion while staying in control of time.}{Be ready to return to appendix slides for definitions, null model, and data scale.}
+\begin{itemize}
+\item answer directly first; then tie back to measure, data, limit, or implication
+\item do not improvise beyond the paper
+\end{itemize}
+\boldline{I’d be happy to go back to the betweenness intuition, the null model, or the data magnitudes if useful.}
+
+\section*{Appendix backup}
+\textbf{28. Why betweenness matters} --- \textbf{Say exactly:} \textbf{Betweenness centrality captures how often a node sits on efficient routes between others.}
+
+\textbf{29. Null model} --- \textbf{Say exactly:} \textbf{The null model does not prove causation; it only tells us whether the observed gender pattern is surprising given the same network structure.}
+
+\textbf{30. Reported magnitudes} --- \textbf{Say exactly:} \textbf{The online case is large-scale and daily; the offline case is smaller but operationally detailed and longitudinal.}
+
+\section*{Quick rescue lines}
+\begin{itemize}
+\item \textbf{Are women more important than men?} The paper’s claim is narrower: women appear more central on betweenness-based connectivity measures, not necessarily “more important” in every possible sense.
+\item \textbf{Is this causal?} The paper gives structural evidence and cautious interpretation, but it does not prove conscious strategy or causal mechanism.
+\item \textbf{Why betweenness?} Because the paper studies covert operational networks, where efficient shortest-path brokerage is especially consequential.
+\item \textbf{Could this be a few standout cases?} The supplementary checks argue against that: the online distribution is broad, and in PIRA the highest-betweenness women were not the women experts would have singled out.
+\item \textbf{Could women just be in one special role?} The role-breakdown figure argues no clear evidence for that explanation.
+\item \textbf{Single-sentence summary?} Women are fewer in number, but in both case studies they often occupy disproportionately important brokerage positions in the network.
+\end{itemize}
+
+\end{document}

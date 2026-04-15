@@ -16,11 +16,11 @@
     \end{column}
 
     \begin{column}{0.45\textwidth}
-      \begin{exampleblock}{Discussion points}
+      \begin{exampleblock}{Additional checks from the discussion}
         \begin{itemize}
           \item ISIS groups can approach 50\% women, so rarity alone is weak.
           \item In PIRA, expert reputation lists did not align with top-BC women.
-          \item No clear evidence ties BC to a single operational role.
+          \item The paper's robustness checks extend beyond one metric or one explanation.
         \end{itemize}
       \end{exampleblock}
     \end{column}
@@ -30,6 +30,58 @@
     \textbf{Time: 2:15}\par
     Treat this as a credibility slide.\par
     Move quickly but explicitly through the alternatives the authors themselves consider.
+  }
+\end{frame}
+
+\begin{frame}{Not driven by a few exceptional women}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.32\textwidth}
+      \begin{block}{Main point}
+        The pattern is broad, not driven by a tiny handful of standout women.
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.68\textwidth}
+      \PaperFigureSlot[0.7\textheight]{S4.png}{
+        Supplementary figure S4: CCDF evidence against the ``few exceptional women'' explanation.
+      }
+    \end{column}
+  \end{columns}
+
+  \note{
+    \textbf{Time: 1:30}\par
+    \textbf{MUST SAY:}\par
+    The online women's betweenness distribution is broad across representative time steps rather than dominated by a few outliers.\par
+    For PIRA, the highest-betweenness women did not line up with the names that subject-matter experts regarded as especially prominent.\par
+    Explain the robustness point, not the CCDF mathematics in detail.\par
+    Then move to the role-assignment alternative.
+  }
+\end{frame}
+
+\begin{frame}{High betweenness is not tied to one operational role}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.32\textwidth}
+      \begin{block}{Main point}
+        The paper finds no clear evidence that women's higher betweenness comes from occupying one special role category.
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.68\textwidth}
+      \PaperFigureSlot[0.6\textheight]{S5.png}{
+        Supplementary figure S5: normalized betweenness centrality broken down by PIRA operational role.
+      }
+    \end{column}
+  \end{columns}
+
+  \note{
+    \textbf{Time: 1:30}\par
+    \textbf{MUST SAY:}\par
+    This slide rebuts the role-assignment alternative: if women systematically occupied a single high-betweenness specialty, that alone could explain the gender difference.\par
+    Instead, men and women are scattered across operational roles, so the BC pattern looks more like a bottom-up network outcome than an assignment artifact.\par
+    Keep the point narrow: this is a rebuttal to one alternative explanation.\par
+    Then move to the paper's stated limitations.
   }
 \end{frame}
 
@@ -92,35 +144,56 @@
 
 \begin{frame}{A speculative mechanism: team ethic in a fission--fusion network}
   \small
-  \begin{block}{Working assumptions}
-    \centering
-    \begin{tikzpicture}[node distance=0.45cm,scale=0.92,every node/.style={transform shape}]
-      \node[draw=PresTwoMuted,rounded corners,fill=PresTwoSurface,align=center,inner sep=5pt,text width=0.23\textwidth] (a1) {High-BC actors are modeled as\\more team-oriented};
-      \node[draw=PresTwoMuted,rounded corners,fill=PresTwoSurface,align=center,inner sep=5pt,text width=0.29\textwidth,right=of a1] (a2) {That team ethic spreads\\within clusters containing women};
-      \node[draw=PresTwoMuted,rounded corners,fill=PresTwoSurface,align=center,inner sep=5pt,text width=0.18\textwidth,right=of a2] (a3) {The process runs atop a\\fission--fusion model};
-      \draw[-Latex,thick] (a1)--(a2)--(a3);
-    \end{tikzpicture}
-  \end{block}
-
   \begin{columns}[T,onlytextwidth]
-    \begin{column}{0.6\textwidth}
-      \PaperFigureSlot[0.42\textheight]{2E.png}{
+    \begin{column}{0.68\textwidth}
+      \PaperFigureSlot[0.65\textheight]{2E.png}{
         Show both model-vs-data panels together.
       }
     \end{column}
 
-    \begin{column}{0.4\textwidth}
-      \begin{exampleblock}{Why include this at all?}
-        PIRA observations are yearly, while the proposed spreading dynamics are assumed to happen faster. The paper presents this as an \alert{oversimplified, notional mechanism}, not as causal proof.
+    \begin{column}{0.32\textwidth}
+      \begin{exampleblock}{What the fit is meant to show}
+        Under the paper's assumptions, a simple fission--fusion model can reproduce the broad direction of the observed PIRA trends.
       \end{exampleblock}
     \end{column}
   \end{columns}
 
   \note{
     \textbf{Time: 2:30}\par
-    Be explicit that the authors call this setup oversimplified.\par
+    \textbf{MUST SAY:}\par
+    High-BC actors are modeled as more team-oriented.\par
+    That team ethic is assumed to spread within clusters containing women.\par
+    The whole process runs on top of a fission--fusion network model.\par
+    PIRA observations are yearly, while the proposed spreading dynamics are assumed to happen faster.\par
+    Be explicit that the authors call this setup oversimplified and do not present it as causal proof.\par
     Explain fission--fusion only at a high level.\par
-    Then move directly to the takeaways.
+    Then use the supplementary schematic to make the assumptions concrete.
+  }
+\end{frame}
+
+\begin{frame}{How the generative model operates}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.70\textwidth}
+      \PaperFigureSlot[0.70\textheight]{S3.png}{
+        Supplementary figure S3: the generative multi-agent model used only for the paper's Fig. 2E comparison.
+      }
+    \end{column}
+
+    \begin{column}{0.30\textwidth}
+      \begin{block}{What the schematic specifies}
+        It makes the update rules visible: coalescence versus fragmentation, kinship versus team rules, and the way team behaviour spreads across agents.
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \note{
+    \textbf{Time: 1:30}\par
+    \textbf{MUST SAY:}\par
+    The schematic spells out the coalescence and fragmentation rules, the kinship-versus-team logic, and the way ``infected'' agents spread the team ethic.\par
+    The supplementary text stresses that this is \alert{oversimplified} and far from a definitive mechanism; its role is to show one minimal process that can reproduce the observed trends.\par
+    Use the schematic to clarify, not to over-sell the model.\par
+    Then move to the takeaways.
   }
 \end{frame}
 

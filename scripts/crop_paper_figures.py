@@ -11,8 +11,10 @@ import numpy as np
 
 
 ROOT = Path("/Users/pfuchs/mimuw/tgs/pres2")
-PAPER_PDF = ROOT / "materials" / "womens-connectivity-extreme-networks.pdf"
+MAIN_PAPER_PDF = ROOT / "materials" / "womens-connectivity-extreme-networks.pdf"
+SUPPLEMENTARY_PDF = ROOT / "materials" / "1501742_sm.pdf"
 WORK_DIR = ROOT / "build" / "pdfimages"
+SUPPLEMENTARY_WORK_DIR = ROOT / "build" / "sm_pages"
 PROCESSED_DIR = ROOT / "assets" / "figures" / "processed"
 DISPLAY_PADDING_PX = 150
 
@@ -22,15 +24,16 @@ class CropTarget:
     output_name: str
     source_name: str
     description: str
+    source_subdir: str = "pdfimages"
 
     def source_path(self, root: Path) -> Path:
-        return root / "build" / "pdfimages" / self.source_name
+        return root / "build" / self.source_subdir / self.source_name
 
     def output_path(self, root: Path) -> Path:
         return root / "assets" / "figures" / "processed" / self.output_name
 
 
-TARGET_SPECS: tuple[CropTarget, ...] = (
+MAIN_TARGET_SPECS: tuple[CropTarget, ...] = (
     CropTarget("1A.png", "img-000.png", "Figure 1A: daily online network snapshots in the left column."),
     CropTarget("1B.png", "img-000.png", "Figure 1B: online betweenness time series."),
     CropTarget("1C.png", "img-000.png", "Figure 1C: degree centrality with gender-shuffle null."),
@@ -45,10 +48,22 @@ TARGET_SPECS: tuple[CropTarget, ...] = (
     CropTarget("3B.png", "img-002.png", "Figure 3B: PIRA lifetime connections comparison."),
 )
 
+SUPPLEMENTARY_TARGET_SPECS: tuple[CropTarget, ...] = (
+    CropTarget("S1.png", "page-2.png", "Figure S1: BC worked example with a woman-centered shortest-path matrix.", source_subdir="sm_pages"),
+    CropTarget("S2.png", "page-4.png", "Figure S2: PIRA productivity rises while actor counts fall.", source_subdir="sm_pages"),
+    CropTarget("S3.png", "page-5.png", "Figure S3: generative multi-agent model schematic.", source_subdir="sm_pages"),
+    CropTarget("S4.png", "page-7.png", "Figure S4: CCDF of women's betweenness centrality.", source_subdir="sm_pages"),
+    CropTarget("S5.png", "page-9.png", "Figure S5: BC broken down by operational role.", source_subdir="sm_pages"),
+)
 
-def build_default_targets(root: Path) -> list[CropTarget]:
+
+def build_default_targets(root: Path, collection: str = "main") -> list[CropTarget]:
     del root
-    return list(TARGET_SPECS)
+    if collection == "main":
+        return list(MAIN_TARGET_SPECS)
+    if collection == "supplementary":
+        return list(SUPPLEMENTARY_TARGET_SPECS)
+    raise ValueError(f"Unsupported collection: {collection}")
 
 
 def pending_targets(
@@ -66,20 +81,40 @@ def pending_targets(
     ]
 
 
-def ensure_source_images(root: Path) -> None:
-    work_dir = root / "build" / "pdfimages"
-    expected = [work_dir / "img-000.png", work_dir / "img-001.png", work_dir / "img-002.png"]
-    if all(path.exists() for path in expected):
+def ensure_source_images(root: Path, collection: str) -> None:
+    if collection == "main":
+        work_dir = root / "build" / "pdfimages"
+        expected = [work_dir / "img-000.png", work_dir / "img-001.png", work_dir / "img-002.png"]
+        if all(path.exists() for path in expected):
+            return
+
+        work_dir.mkdir(parents=True, exist_ok=True)
+        for old in work_dir.glob("img-*.png"):
+            old.unlink()
+
+        subprocess.run(
+            ["pdfimages", "-png", str(root / "materials" / "womens-connectivity-extreme-networks.pdf"), str(work_dir / "img")],
+            check=True,
+        )
         return
 
-    work_dir.mkdir(parents=True, exist_ok=True)
-    for old in work_dir.glob("img-*.png"):
-        old.unlink()
+    if collection == "supplementary":
+        work_dir = root / "build" / "sm_pages"
+        expected = [work_dir / f"page-{n}.png" for n in (2, 4, 5, 7, 9)]
+        if all(path.exists() for path in expected):
+            return
 
-    subprocess.run(
-        ["pdfimages", "-png", str(root / "materials" / "womens-connectivity-extreme-networks.pdf"), str(work_dir / "img")],
-        check=True,
-    )
+        work_dir.mkdir(parents=True, exist_ok=True)
+        for old in work_dir.glob("page-*.png"):
+            old.unlink()
+
+        subprocess.run(
+            ["pdftoppm", "-png", str(root / "materials" / "1501742_sm.pdf"), str(work_dir / "page")],
+            check=True,
+        )
+        return
+
+    raise ValueError(f"Unsupported collection: {collection}")
 
 
 def fit_for_display(
@@ -163,12 +198,12 @@ def wait_for_action(valid_keys: set[str]) -> str:
             return char
 
 
-def run_crop_session(root: Path, skip_existing: bool, start_from: str | None) -> int:
-    ensure_source_images(root)
+def run_crop_session(root: Path, collection: str, skip_existing: bool, start_from: str | None) -> int:
+    ensure_source_images(root, collection)
     processed_dir = root / "assets" / "figures" / "processed"
     processed_dir.mkdir(parents=True, exist_ok=True)
 
-    targets = build_default_targets(root)
+    targets = build_default_targets(root, collection=collection)
     queue = pending_targets(targets, processed_dir, skip_existing=skip_existing)
     if start_from is not None:
         queue = [target for target in queue if target.output_name >= start_from]
@@ -272,6 +307,12 @@ def parse_args() -> argparse.Namespace:
         dest="from_target",
         help="Start from this output file name, for example 2C.png.",
     )
+    parser.add_argument(
+        "--collection",
+        choices=("main", "supplementary"),
+        default="main",
+        help="Which figure collection to crop.",
+    )
     return parser.parse_args()
 
 
@@ -279,6 +320,7 @@ def main() -> int:
     args = parse_args()
     return run_crop_session(
         root=args.root,
+        collection=args.collection,
         skip_existing=not args.include_existing,
         start_from=args.from_target,
     )

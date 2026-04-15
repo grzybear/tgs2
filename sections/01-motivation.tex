@@ -11,11 +11,15 @@
       \end{block}
 
       \begin{block}{Betweenness centrality}
+        \vspace{-0.45em}
+        {\setlength{\abovedisplayskip}{0.25em}%
+        \setlength{\belowdisplayskip}{0.3em}%
         \[
         c_B(n)=\sum_{s\neq t\neq n}\frac{\sigma_{st}(n)}{\sigma_{st}}
         \quad
         \hat c_B(n)=\frac{c_B(n)}{(N-1)(N-2)}
         \]
+        }
 
         {\scriptsize $\sigma_{st}$ counts shortest paths from $s$ to $t$;
         $\sigma_{st}(n)$ counts those through $n$;
@@ -55,5 +59,36 @@
     Explain degree first, then betweenness exactly as the paper defines it.\par
     State why shortest paths matter in covert networks: extra steps mean extra risk and cost.\par
     Make sure the audience understands why low degree and high betweenness can coexist.
+  }
+\end{frame}
+
+\begin{frame}{Why betweenness matters in a covert network}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.4\textwidth}
+      \begin{block}{What the worked example shows}
+        In the supplementary example, the woman-labeled node participates in more shortest paths than any of the four men.
+      \end{block}
+
+      \begin{exampleblock}{Interpretation}
+        If communication or material transfer follows shortest paths, the high-BC node becomes disproportionately important for brokerage and network stability.
+      \end{exampleblock}
+
+      {\footnotesize\color{PresTwoSecondary}
+      This is the paper's concrete justification for using betweenness as more than a mathematical abstraction.}
+    \end{column}
+
+    \begin{column}{0.6\textwidth}
+      \PaperFigureSlot[0.64\textheight]{S1.png}{
+        Supplementary figure S1: a worked shortest-path example that makes betweenness concrete.
+      }
+    \end{column}
+  \end{columns}
+
+  \note{
+    \textbf{Time: 1:30}\par
+    Use this as the paper's own intuition slide for BC.\par
+    Emphasize communication, passing items, and brokerage rather than abstract graph theory.\par
+    Then move into the data sets and empirical results.
   }
 \end{frame}
