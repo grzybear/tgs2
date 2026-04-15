@@ -34,12 +34,16 @@ class CropTarget:
 
 
 MAIN_TARGET_SPECS: tuple[CropTarget, ...] = (
-    CropTarget("1A.png", "img-000.png", "Figure 1A: daily online network snapshots in the left column."),
+    CropTarget("1A-1.png", "img-000.png", "Figure 1A, top panel: daily online network snapshot."),
+    CropTarget("1A-2.png", "img-000.png", "Figure 1A, middle panel: daily online network snapshot."),
+    CropTarget("1A-3.png", "img-000.png", "Figure 1A, bottom panel: daily online network snapshot."),
     CropTarget("1B.png", "img-000.png", "Figure 1B: online betweenness time series."),
     CropTarget("1C.png", "img-000.png", "Figure 1C: degree centrality with gender-shuffle null."),
     CropTarget("1D-left.png", "img-000.png", "Figure 1D left: high-degree centrality star cartoon."),
     CropTarget("1D-right.png", "img-000.png", "Figure 1D right: low-degree brokerage cartoon."),
-    CropTarget("2A.png", "img-001.png", "Figure 2A: PIRA network snapshots in the left column."),
+    CropTarget("2A-1.png", "img-001.png", "Figure 2A, top panel: PIRA network snapshot (pre-reorganisation)."),
+    CropTarget("2A-2.png", "img-001.png", "Figure 2A, middle panel: PIRA network snapshot (reorganisation)."),
+    CropTarget("2A-3.png", "img-001.png", "Figure 2A, bottom panel: PIRA network snapshot (post-reorganisation)."),
     CropTarget("2B.png", "img-001.png", "Figure 2B: IED attacks over time."),
     CropTarget("2C.png", "img-001.png", "Figure 2C: PIRA betweenness trend."),
     CropTarget("2D.png", "img-001.png", "Figure 2D: PIRA degree trend."),
